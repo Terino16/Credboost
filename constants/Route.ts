@@ -5,6 +5,7 @@ export const Routes = {
     about: "/about",
     contact: "/contact",
     features: "/features",
+    forgotPassword: "/auth/forgot-password",
     blog: "/blog",
     login: "/auth/sign-in",
     signup: "/auth/sign-up",

@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import createCampaign from "@/actions/dashboard/campaigns/createCampaign"
+import createCampaign from "@/actions/dashboard/space/createSpace"
 import { useToast } from "@/hooks/use-toast"
 
 

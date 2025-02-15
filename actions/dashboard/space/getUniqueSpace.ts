@@ -13,9 +13,9 @@ interface CampaignError {
   error: string;
 }
 
-async function getCampaign(id: string): Promise<Campaign | CampaignError> {
+async function getUniqueSpace(id: string): Promise<Campaign | CampaignError> {
   try {
-    const res = await prisma.campaign.findUnique({
+    const res = await prisma.space.findUnique({
       where: {
         id: id,
       },
@@ -31,4 +31,4 @@ async function getCampaign(id: string): Promise<Campaign | CampaignError> {
   }
 }
 
-export default getCampaign;
+export default getUniqueSpace;

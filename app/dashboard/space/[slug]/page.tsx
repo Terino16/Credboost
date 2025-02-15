@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import getCampaign from "@/actions/dashboard/campaigns/getCampaign";
+import getCampaign from "@/actions/dashboard/space/getUniqueSpace";
 import Notfound from "@/components/dashboard/campaign/Notfound";
 import CampaignHero from "@/components/dashboard/campaign/CampaignHero";
 import ProductForm from "@/components/dashboard/campaign/ProductForm";

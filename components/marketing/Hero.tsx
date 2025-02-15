@@ -1,7 +1,6 @@
 "use client";
 import { motion } from 'framer-motion';
 import { Badge } from '../ui/badge';
-import Image from 'next/image';
 
 function GetStartedButton(): React.JSX.Element {
     return (

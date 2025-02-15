@@ -1,15 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String  @map("user_id")
+  type               String
+  provider           String
+  providerAccountId  String  @map("provider_account_id")
+  refresh_token      String? @db.Text
+  access_token       String? @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? @db.Text
+  session_state      String?
  
-generator client {
-  provider = "prisma-client-js"
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+ 
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@map("sessions")
 }
  
-model Campaign {
-  id          String   @id @default(cuid())
-  userId     String  
-  name       String
-  description String
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime? @map("email_verified")
+  password      String?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  subscription  Subscription @default(FREE)
+  spaces        Space[]
+  createdAt     DateTime @default(now())
+
+  @@map("users")
+}
+
+enum Subscription {
+  FREE
+  PLUS
+  PREMIUM
+}
+
+model Space {
+  id           String         @id @default(uuid())
+  ownerId      String
+  owner        User           @relation(fields: [ownerId], references: [id])
+  name         String
+  description  String
+  questionnaire Questionnaire?
+  testimonials  Testimonial[]
+  createdAt    DateTime       @default(now())
+}
+
+model Questionnaire {
+  id       String     @id @default(uuid())
+  spaceId  String     @unique
+  space    Space      @relation(fields: [spaceId], references: [id])
+  title    String
+  questions Json
+  link     String     @unique
+  testimonials Testimonial[]
+  createdAt DateTime  @default(now())
+}
+
+model Testimonial {
+  id             String   @id @default(uuid())
+  questionnaireId String
+  questionnaire  Questionnaire @relation(fields: [questionnaireId], references: [id])
+  spaceId        String
+  space          Space @relation(fields: [spaceId], references: [id])
+  userName       String
+  content        String
+  status         Status  @default(PENDING)
+  createdAt      DateTime @default(now())
+}
+
+enum Status {
+  PENDING
+  APPROVED
+  REJECTED
 }

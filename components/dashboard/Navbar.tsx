@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { ModeToggle } from "@/components/ui/theme-toggle"
 import MobileNavbar from "./MobileNavbar"
-import { UserButton } from "@clerk/nextjs"
+import UserButton from "@/components/general/UserButton"
 
 
 export default function Navbar() {
@@ -15,8 +15,8 @@ export default function Navbar() {
                 </div>
                 
                 <div className="flex items-center gap-2">
-                    <ModeToggle />
                     <UserButton />
+                    <ModeToggle />
                 </div>
             </div>
             {/* Mobile Navbar */}

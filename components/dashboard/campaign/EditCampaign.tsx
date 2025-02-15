@@ -25,7 +25,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import updateCampaign from "@/actions/dashboard/campaigns/updateCampaign";
+import updateCampaign from "@/actions/dashboard/space/updateSpace";
 import { useToast } from "@/hooks/use-toast";
 import { DialogClose } from "@radix-ui/react-dialog";
 
