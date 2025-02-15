@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import getCampaign from "@/actions/dashboard/campaigns/getCampaign";
 import Notfound from "@/components/dashboard/campaign/Notfound";
-
-
+import CampaignHero from "@/components/dashboard/campaign/CampaignHero";
+import ProductForm from "@/components/dashboard/campaign/ProductForm";
 
 export default async function Page({
   params,
@@ -11,16 +11,17 @@ export default async function Page({
 }) {
   const slug = (await params).slug;
   const campaign = await getCampaign(slug);
+  const form={};
+  // const product = await getProduct(campaign.product_id);
 
-  // Narrowing the type
   if ("error" in campaign) {
     return <Notfound message={campaign.error} />;
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div>My Post: {slug}</div>
-      <div>{campaign.name}</div>
+    <Suspense>
+      <CampaignHero campaign={campaign} />
+      <ProductForm  form={form} />
     </Suspense>
   );
 }
