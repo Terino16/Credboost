@@ -1,8 +1,8 @@
-Storeowner Flow
+Spaceowner Flow
 
 Sign up/Login
-Create a store
-Create multiple questionnaires
+Create a space
+Create a questionnaire
 Share questionnaire links with users
 View received testimonials
 Approve or reject testimonials
