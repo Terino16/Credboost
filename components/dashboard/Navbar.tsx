@@ -2,7 +2,9 @@ import Image from "next/image"
 import { ModeToggle } from "@/components/ui/theme-toggle"
 import MobileNavbar from "./MobileNavbar"
 import UserButton from "@/components/general/UserButton"
-
+import { Button } from "../ui/button"
+import Link from "next/link"
+import { Routes } from "@/constants/Route"
 
 export default function Navbar() {
     return (
@@ -10,11 +12,13 @@ export default function Navbar() {
             {/* Desktop Navbar */}
             <div className="hidden lg:flex justify-between items-center w-full">
                 <div className="flex items-center gap-2">
-                    <Image src="/logo.png" alt="CredBoost" width={35} height={25} />
-                    <h1 className="text-2xl font-bold">CredBoost</h1>
+                    <Link className="flex flex-row gap-2 items-center" href={Routes.home}><Image src="/logo.png" alt="CredBoost" width={35} height={25} />
+                    <h1 className="text-2xl font-bold">CredBoost</h1></Link>
+                    
                 </div>
                 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-4">
+                    <Button className="font-medium"><Link href={Routes.pricing}>Upgrade</Link></Button>
                     <UserButton />
                     <ModeToggle />
                 </div>

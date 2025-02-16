@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Check } from "lucide-react";
-import { pricingList, PricingProps, PopularPlanType } from "@/app/(marketing)/pricing/pricingData";
+import { pricingList, PricingProps, PopularPlanType } from "@/constants/pricingData";
 
 
 export default function PricingCard () {

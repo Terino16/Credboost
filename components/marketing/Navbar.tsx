@@ -22,10 +22,10 @@ export default async function Navbar() {
                     <h1 className="text-xl font-semibold tracking-tight">CredBoost</h1>
                 </div>
                 <div className="flex items-center gap-8  text-gray-500">
-                    <LinkComponent href={Routes.dashboard} className="leading-[15px] text-[18px] font-light tracking-tight hover:text-white ">Dashboard</LinkComponent>
-                    <LinkComponent href={Routes.pricing} className="leading-[15px] text-[18px] font-light tracking-tight hover:text-white ">Pricing</LinkComponent>
-                    <LinkComponent href={Routes.features} className="leading-[15px] text-[18px] font-light tracking-tight hover:text-white">Features</LinkComponent>
-                    <LinkComponent href={Routes.blog} className="leading-[15px] text-[18px] font-light tracking-tight hover:text-white">Blog</LinkComponent>
+                    <LinkComponent href={Routes.dashboard} className="leading-[15px] text-[18px] font-light tracking-tight hover:text-gray-400 ">Dashboard</LinkComponent>
+                    <LinkComponent href={Routes.pricing} className="leading-[15px] text-[18px] font-light tracking-tight hover:text-gray-400 ">Pricing</LinkComponent>
+                    <LinkComponent href={Routes.features} className="leading-[15px] text-[18px] font-light tracking-tight hover:text-gray-400">Features</LinkComponent>
+                    <LinkComponent href={Routes.blog} className="leading-[15px] text-[18px] font-light tracking-tight hover:text-gray-400">Blog</LinkComponent>
                 </div>
                 <div className="flex items-center gap-4">
                     <ModeToggle />
