@@ -8,93 +8,81 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Star } from "lucide-react";
+import { useState } from "react";
 
 const formSchema = z.object({
-  spaceName: z.string().min(1, "Space name is required"),
-  spaceHeader: z.string().min(1, "Space header is required"),
-  spaceLogo: z.any(),
-  spaceDescription: z.string().min(1, "Description is required"),
-  prompts: z.array(z.string()).min(2).max(5),
-  socialLink: z.string().url("Invalid URL format"),
-  starReview: z.number().min(1).max(5),
-  collectionType: z.string().min(1,"Give a collection type"),
+  name: z.string().min(1, "Space name is required"),
+  logo: z.any(),
+  description: z.string().min(1, "Description is required"),
+  twitter: z.string().url("Invalid URL format , Missing https or http").or(z.literal("")),
+  instagram: z.string().url("Invalid URL format , Missing https or http").or(z.literal("")),
+  facebook: z.string().url("Invalid URL format , Missing https or http").or(z.literal("")),
+  youtube: z.string().url("Invalid URL format , Missing https or http").or(z.literal("")),
+  tiktok: z.string().url("Invalid URL format , Missing https or http").or(z.literal("")),
 });
 
 export default function SpaceForm() {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      spaceName: "",
-      spaceHeader: "",
-      spaceLogo: null,
-      spaceDescription: "",
-      prompts: ["", ""], // Start with 2 prompts
-      socialLink: "",
-      starReview: 1,
-      collectionType: "",
+      name: "",
+      logo: null,
+      description: "",
+      twitter: "",
+      instagram: "",
+      facebook: "",
+      youtube: "",
+      tiktok: "",
     },
   });
 
-  const { control, handleSubmit, setValue, watch } = form;
-  const prompts = watch("prompts");
 
-  const addPrompt = () => {
-    if (prompts.length < 5) {
-      setValue("prompts", [...prompts, ""]);
-    }
-  };
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values); 
-  };
+  const { control, setValue, watch } = form;
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+  }
+
+
+  
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit(onSubmit)} className="gap-4">
+     <form onSubmit={form.handleSubmit(onSubmit)} className="gap-4 space-y-4">
+
+     {/* <FormField
+  control={control}
+  name="logo"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>Space Logo</FormLabel>
+      <FormControl>
+        <Input type="file" accept="image/*" onChange={handleFileChange} />
+      </FormControl>
+      {previewUrl && <img src={previewUrl} alt="Preview" className="mt-2 h-20" />}
+      <FormMessage />
+    </FormItem>
+  )}
+/> */}
         <FormField
           control={control}
-          name="spaceName"
+          name="name"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Space Name</FormLabel>
               <FormControl>
-                <Input placeholder="Enter space name" {...field} />
+                <Input placeholder="Enter Space name" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+
+
         <FormField
           control={control}
-          name="spaceHeader"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Space Header</FormLabel>
-              <FormControl>
-                <Input placeholder="Enter space header" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={control}
-          name="spaceLogo"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Space Logo</FormLabel>
-              <FormControl>
-                <Input type="file" accept="image/*" onChange={(e) => field.onChange(e.target.files?.[0])} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={control}
-          name="spaceDescription"
+          name="description"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Space Description</FormLabel>
@@ -106,37 +94,15 @@ export default function SpaceForm() {
           )}
         />
 
-        <div>
-          <FormLabel>Prompts</FormLabel>
-          {prompts.map((_, index) => (
-            <FormField
-              key={index}
-              control={control}
-              name={`prompts.${index}`}
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input placeholder={`Prompt ${index + 1}`} {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-          ))}
-          {prompts.length < 5 && (
-            <Button type="button" onClick={addPrompt} className="mt-2">
-              Add Prompt
-            </Button>
-          )}
-        </div>
 
         <FormField
           control={control}
-          name="socialLink"
+          name="twitter"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Social Links</FormLabel>
+              <FormLabel>Twitter</FormLabel>
               <FormControl>
-                <Input type="url" placeholder="Enter social link" {...field} />
+                <Input placeholder="Enter twitter link Or Leave blank" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -145,20 +111,42 @@ export default function SpaceForm() {
 
         <FormField
           control={control}
-          name="starReview"
+          name="instagram"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Star Review</FormLabel>
+              <FormLabel>Instagram</FormLabel>
               <FormControl>
-                <div className="flex gap-1">
-                  {[1, 2, 3, 4, 5].map((num) => (
-                    <Star
-                      key={num}
-                      className={`w-6 h-6 cursor-pointer ${field.value >= num ? "text-yellow-400" : "text-gray-300"}`}
-                      onClick={() => setValue("starReview", num)}
-                    />
-                  ))}
-                </div>
+                <Input placeholder="Enter instagram link Or Leave blank" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+
+        <FormField
+          control={control}
+          name="facebook"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Facebook</FormLabel>
+              <FormControl>
+                <Input placeholder="Enter facebook link Or Leave blank" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+
+        <FormField
+          control={control}
+          name="youtube"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Youtube</FormLabel>
+              <FormControl>
+                <Input placeholder="Enter youtube link Or Leave blank" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -167,20 +155,12 @@ export default function SpaceForm() {
 
         <FormField
           control={control}
-          name="collectionType"
+          name="tiktok"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Type of Collection</FormLabel>
+              <FormLabel>Tiktok</FormLabel>
               <FormControl>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="video">Video</SelectItem>
-                    <SelectItem value="text">Text</SelectItem>
-                  </SelectContent>
-                </Select>
+                <Input placeholder="Enter tiktok link Or Leave blank" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

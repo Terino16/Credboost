@@ -66,6 +66,7 @@ model Space {
   ownerId      String
   owner        User           @relation(fields: [ownerId], references: [id])
   name         String
+  logo        String?
   description  String
   questionnaire Questionnaire?
   testimonials  Testimonial[]
