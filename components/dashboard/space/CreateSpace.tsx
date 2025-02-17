@@ -10,6 +10,7 @@ import {
     DialogTrigger,
   } from "@/components/ui/dialog"
 import { PlusCircleIcon } from "lucide-react"
+import SpaceForm from "./SpcaeForm"
 
   
 export default function CreateSpace() {
@@ -21,14 +22,14 @@ export default function CreateSpace() {
                 <PlusCircleIcon/>
             </Button>
           </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
+            <DialogTitle>Create New Space</DialogTitle>
             <DialogDescription>
-              This action cannot be undone. This will permanently delete your account
-              and remove your data from our servers.
+              This will generate dedicated page for you projects where you can collect and manage testimonials
             </DialogDescription>
           </DialogHeader>
+          <SpaceForm/>
         </DialogContent>
       </Dialog>
     )
