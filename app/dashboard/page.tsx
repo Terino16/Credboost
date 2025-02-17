@@ -1,10 +1,9 @@
 import { getSpaces } from "@/actions/dashboard/space/getSpaces";
-import CampaignCard from "@/components/dashboard/campaign/CampaignCard";
-import CreateCampaign from "@/components/dashboard/campaign/CreateCampaign";
+
 import { Routes } from "@/constants/Route";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-
+import CreateSpace from "@/components/dashboard/space/CreateSpace";
 
 export default async function Dashboard() {
   const session = await auth();
@@ -29,7 +28,7 @@ export default async function Dashboard() {
           Dashboard
         </h1>
 
-        <CreateCampaign userId={ownerId} />
+       <CreateSpace />
       </div>
 
       <div className="flex flex-col items-start md:flex-row gap-6">

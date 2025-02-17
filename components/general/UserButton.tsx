@@ -11,8 +11,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { User, LogOut } from "lucide-react"
-
+import { User, LogOut, CreditCard } from "lucide-react"
+import Link from "next/link"
+import { Routes } from "@/constants/Route"
 export default function UserButton() {
   const { data: session, status } = useSession()
   const [isOpen, setIsOpen] = useState(false)
@@ -56,6 +57,16 @@ export default function UserButton() {
           </a>
         </DropdownMenuItem>
         <DropdownMenuItem
+          className="cursor-pointer  flex items-center"
+          asChild
+        >
+          <Link href={Routes.pricing}>
+          <CreditCard className="mr-2 h-4 w-4" />
+          <span>Upgrade</span>
+          </Link>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem
           className="cursor-pointer text-red-600 focus:text-red-600 flex items-center"
           onSelect={(event) => {
             event.preventDefault()
@@ -65,6 +76,7 @@ export default function UserButton() {
           <LogOut className="mr-2 h-4 w-4" />
           <span>Sign out</span>
         </DropdownMenuItem>
+      
       </DropdownMenuContent>
     </DropdownMenu>
   )

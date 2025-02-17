@@ -5,8 +5,14 @@ import UserButton from "@/components/general/UserButton"
 import { Button } from "../ui/button"
 import Link from "next/link"
 import { Routes } from "@/constants/Route"
+import SubscriptionButton from "./SubscriptionButton"
+import { Suspense } from "react"
+import getSubscription from "@/actions/Navbar/getSubscription"
+
 
 export default function Navbar() {
+
+    const subscription=getSubscription();
     return (
         <div className="flex justify-between items-center p-6">
             {/* Desktop Navbar */}
@@ -18,7 +24,10 @@ export default function Navbar() {
                 </div>
                 
                 <div className="flex items-center gap-4">
-                    <Button className="font-medium"><Link href={Routes.pricing}>Upgrade</Link></Button>
+                    <Suspense>
+                    <SubscriptionButton subscription={subscription}/>
+                    </Suspense>
+                 
                     <UserButton />
                     <ModeToggle />
                 </div>
