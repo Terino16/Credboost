@@ -30,7 +30,7 @@ export default function PricingCard () {
             }
           >
             <CardHeader>
-              <CardTitle className="flex item-center justify-between">
+              <CardTitle className="flex item-center justify-between min-h-6">
                 {pricing.title}
                 {pricing.popular === PopularPlanType.YES ? (
                   <Badge
@@ -41,12 +41,12 @@ export default function PricingCard () {
                   </Badge>
                 ) : null}
               </CardTitle>
-              <div>
+              <div className="min-h-10">
                 <span className="text-3xl font-bold">${pricing.price}</span>
                 <span className="text-muted-foreground"> /month</span>
               </div>
 
-              <CardDescription>{pricing.description}</CardDescription>
+              <CardDescription className="min-h-8">{pricing.description}</CardDescription>
             </CardHeader>
 
             <CardContent>
