@@ -14,7 +14,7 @@ export default async function Navbar() {
  
     
     return (
-        <div className=" absolute top-0  right-0 left-0 mx-auto flex max-w-6xl  justify-between items-center py-8 ">
+        <div className="  mx-auto flex max-w-6xl  justify-between items-center py-8 ">
             {/* Desktop Navbar */}
             <div className="hidden lg:flex justify-between items-center w-full ">
                 <div className="flex items-center gap-2">
