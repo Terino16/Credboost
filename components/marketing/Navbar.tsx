@@ -14,18 +14,18 @@ export default async function Navbar() {
  
     
     return (
-        <div className="flex justify-between items-center p-6">
+        <div className=" absolute top-0  right-0 left-0 mx-auto flex max-w-6xl  justify-between items-center py-8 ">
             {/* Desktop Navbar */}
-            <div className="hidden lg:flex justify-between items-center w-full">
+            <div className="hidden lg:flex justify-between items-center w-full ">
                 <div className="flex items-center gap-2">
                     <Image src="/logo.png" alt="CredBoost" width={35} height={25} />
                     <h1 className="text-xl font-semibold tracking-tight">CredBoost</h1>
                 </div>
-                <div className="flex items-center gap-8  text-gray-500">
-                    <LinkComponent href={Routes.dashboard} className="leading-[15px] text-[18px] font-light tracking-tight hover:text-gray-400 ">Dashboard</LinkComponent>
-                    <LinkComponent href={Routes.pricing} className="leading-[15px] text-[18px] font-light tracking-tight hover:text-gray-400 ">Pricing</LinkComponent>
-                    <LinkComponent href={Routes.features} className="leading-[15px] text-[18px] font-light tracking-tight hover:text-gray-400">Features</LinkComponent>
-                    <LinkComponent href={Routes.blog} className="leading-[15px] text-[18px] font-light tracking-tight hover:text-gray-400">Blog</LinkComponent>
+                <div className="flex items-center gap-16  text-gray-500">
+                    <LinkComponent href={Routes.dashboard} className=" text-[18px] font-light tracking-tight  ">Dashboard</LinkComponent>
+                    <LinkComponent href={Routes.pricing} className=" text-[18px] font-light tracking-tight  ">Pricing</LinkComponent>
+                    <LinkComponent href={Routes.features} className="text-[18px] font-light tracking-tight ">Features</LinkComponent>
+                    <LinkComponent href={Routes.blog} className=" text-[18px] font-light tracking-tight">Blog</LinkComponent>
                 </div>
                 <div className="flex items-center gap-4">
                     <ModeToggle />

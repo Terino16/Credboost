@@ -13,5 +13,7 @@ export const getSpaces = async (ownerId: string) => {
             }
         }
     );
+    if(campaigns==null)
+        return [];
     return campaigns;
 }  

@@ -9,6 +9,7 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
+import { PlusCircleIcon } from "lucide-react"
 
   
 export default function CreateSpace() {
@@ -17,6 +18,7 @@ export default function CreateSpace() {
         <DialogTrigger asChild>
             <Button>
                 Create Space
+                <PlusCircleIcon/>
             </Button>
           </DialogTrigger>
         <DialogContent>

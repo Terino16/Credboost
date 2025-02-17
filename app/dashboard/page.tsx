@@ -4,6 +4,7 @@ import { Routes } from "@/constants/Route";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import CreateSpace from "@/components/dashboard/space/CreateSpace";
+import SpaceCard from "@/components/dashboard/space/SpaceCard";
 
 export default async function Dashboard() {
   const session = await auth();
@@ -19,7 +20,7 @@ export default async function Dashboard() {
   }
 
 
-  const campaigns = await getSpaces(ownerId);
+  const space = await getSpaces(ownerId);
 
   return (
     <>
@@ -32,15 +33,15 @@ export default async function Dashboard() {
       </div>
 
       <div className="flex flex-col items-start md:flex-row gap-6">
-        {/* {campaigns && campaigns.length > 0 ? (
-          campaigns.map((campaign) => (
-            <CampaignCard key={campaign.id} campaign={campaign} />
+        {space && space.length > 0 ? (
+          space.map((space) => (
+            <SpaceCard key={space.id} space={space} />
           ))
         ) : (
           <p className="text-gray-400 text-center text-lg">
-            No campaigns available. Create a new campaign.
+            No Space available. Create a new Space.
           </p>
-        )} */}
+        )}
       </div>
     </>
   );
