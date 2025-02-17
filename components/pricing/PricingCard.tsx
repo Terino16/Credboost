@@ -42,7 +42,7 @@ export default function PricingCard() {
                 <CardTitle className="flex items-center justify-between min-h-6">
                   {pricing.title}
                   <div className="flex gap-2">
-                    {pricing.popular === PopularPlanType.YES && (
+                    {pricing.popular === PopularPlanType.YES && !isActive && (
                       <Badge variant="secondary" className="text-sm text-primary bg-indigo-500">
                         Most popular
                       </Badge>
