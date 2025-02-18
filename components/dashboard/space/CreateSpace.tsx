@@ -10,7 +10,7 @@ import {
     DialogTrigger,
   } from "@/components/ui/dialog"
 import { PlusCircleIcon } from "lucide-react"
-import SpaceForm from "./SpcaeForm"
+import SpaceForm from "./SpaceForm"
 
   
 export default function CreateSpace() {

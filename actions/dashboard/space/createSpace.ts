@@ -2,33 +2,48 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { auth } from "@/lib/auth";
 
 export default async function createSpace(formState: {
   name: string;
   description: string;
-  userId: string;
+  logo: string;
 }) {
-  const { name, description, userId} = formState;
+  const { name, description, logo } = formState;
 
-  if (!name || !description ) {
-    throw new Error("Missing required fields: name, description");
+  const session = await auth();
+  const ownerId = session?.user?.id;
+
+  if (!ownerId) {
+    return {
+      title: "User Not Found",
+      description: "Unable to find User in Database",
+      variant: "destructive" as "destructive",
+    };
   }
 
-  if(!userId) {
-    throw new Error("User not found");
-  }
   try {
-
-    const campaign = await prisma.space.create({
+    await prisma.space.create({
       data: {
         name,
         description,
-        ownerId: userId
-      }
+        ownerId: ownerId,
+        logo: logo,
+      },
     });
+
     revalidatePath("/dashboard");
-    return {title:"Campaign updated successfully",description:"Following Details have been Added to Databases"};
-} catch (error) {
-  return {title:"Error updating campaign", description:`Error: ${error}`};
+
+    return {
+      title: "Space Created",
+      description: "Space has been created successfully.",
+      variant: "default" as "default",
+    };
+  } catch (error) {
+    return {
+      title: "Error Creating Space",
+      description: `Error: ${error}`,
+      variant: "destructive" as "destructive",
+    };
   }
 }

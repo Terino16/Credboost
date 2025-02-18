@@ -5,9 +5,12 @@ import { ClubIcon, UserIcon } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 interface Props{
     space:{
-        name:string
-        description:string
-        image:string
+    id: string;
+    name: string;
+    logo: string | null;
+    description: string;
+    createdAt: Date;
+    ownerId: string;
     }
 }
 
@@ -19,14 +22,18 @@ export default function SpaceCard({space}:Props)
                 <div className="flex items-center gap-4">   
                     {/* <ClubIcon className="w-6 h-6 text-blue-500 bg-blue-500/10 rounded-full p-1" /> */}
                     <Avatar>
-                        <AvatarImage src={space.image} />
+                        <AvatarImage src={space?.logo ?? ""} />
                         <AvatarFallback>
                             <UserIcon className="w-6 h-6 text-blue-500" />
                         </AvatarFallback>
                     </Avatar>
-                    <CardTitle className="font-bold text-2xl">{space.name}</CardTitle>
+                    <div className="flex flex-col">
+                        <CardTitle className="font-bold text-2xl">{space.name}</CardTitle>
+                        <CardDescription className="truncate font-normal ">{space.description}</CardDescription>
+                    </div>
+                    
                 </div>
-                <CardDescription className="truncate font-normal py-2">{space.description}</CardDescription>
+                
             </CardHeader>
            
         </Card>

@@ -29,7 +29,7 @@ export default async function Dashboard() {
           Dashboard
         </h1>
 
-       <CreateSpace />
+       <CreateSpace  />
       </div>
 
       <div className="flex flex-col items-start md:flex-row gap-6">
