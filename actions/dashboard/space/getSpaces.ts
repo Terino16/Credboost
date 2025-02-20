@@ -2,7 +2,8 @@
 import { prisma } from "@/lib/prisma";
 
 
-export const getSpaces = async (ownerId: string) => {
+export const getNumberOfSpaces = async (ownerId: string) => {
+
     if (!ownerId) {
        return null;
     }
@@ -14,6 +15,6 @@ export const getSpaces = async (ownerId: string) => {
         }
     );
     if(campaigns==null)
-        return [];
-    return campaigns;
+        return 0;
+    return campaigns.length;
 }  

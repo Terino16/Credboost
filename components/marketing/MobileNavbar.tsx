@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button"
 
 export default function MobileNavbar() {
     return (
-        <div className="w-full flex items-center justify-between ">
+        <div className=" px-8 flex items-center justify-between ">
             <div className="flex items-center gap-2">
                 <Image src="/logo.png" alt="CredBoost" width={35} height={25} />
                 <h1 className="text-2xl font-bold">CredBoost</h1>

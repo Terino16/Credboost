@@ -8,8 +8,12 @@ export default async function createSpace(formState: {
   name: string;
   description: string;
   logo: string;
+  customMessage: string;
+  questions: string[];
 }) {
-  const { name, description, logo } = formState;
+  const { name, description, logo, customMessage , questions } = formState;
+
+  console.log(questions);
 
   const session = await auth();
   const ownerId = session?.user?.id;
@@ -27,8 +31,10 @@ export default async function createSpace(formState: {
       data: {
         name,
         description,
-        ownerId: ownerId,
-        logo: logo,
+        ownerId,
+        logo,
+        customMessage,
+        Questions:questions
       },
     });
 
@@ -40,6 +46,7 @@ export default async function createSpace(formState: {
       variant: "default" as "default",
     };
   } catch (error) {
+    console.log(error)
     return {
       title: "Error Creating Space",
       description: `Error: ${error}`,

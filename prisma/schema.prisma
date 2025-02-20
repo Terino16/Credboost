@@ -68,26 +68,16 @@ model Space {
   name         String
   logo        String?
   description  String
-  questionnaire Questionnaire?
+  customMessage String
+  Questions    String[]
   testimonials  Testimonial[]
   createdAt    DateTime       @default(now())
 }
 
-model Questionnaire {
-  id       String     @id @default(uuid())
-  spaceId  String     @unique
-  space    Space      @relation(fields: [spaceId], references: [id])
-  title    String
-  questions Json
-  link     String     @unique
-  testimonials Testimonial[]
-  createdAt DateTime  @default(now())
-}
+
 
 model Testimonial {
   id             String   @id @default(uuid())
-  questionnaireId String
-  questionnaire  Questionnaire @relation(fields: [questionnaireId], references: [id])
   spaceId        String
   space          Space @relation(fields: [spaceId], references: [id])
   userName       String

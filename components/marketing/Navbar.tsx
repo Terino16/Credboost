@@ -3,16 +3,15 @@ import { Routes } from "@/constants/Route";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ModeToggle } from "@/components/ui/theme-toggle";
-import MobileNavbar from "./MobileNavbar";
 import { LinkComponent } from "../ui/link";
 import { auth } from "@/lib/auth";
 import UserButton from "@/components/general/UserButton";
-
+import MobileNavbar from "./MobileNavbar";
 export default async function Navbar() {
   const session = await auth();
 
   return (
-    <div className="  mx-auto flex max-w-6xl  justify-between items-center py-8 ">
+    <div className="flex max-w-6xl mx-auto justify-between items-center py-8 ">
       {/* Desktop Navbar */}
       <div className="hidden lg:flex justify-between items-center w-full ">
         <Link href={Routes.home} className="flex items-center gap-2">
@@ -65,6 +64,7 @@ export default async function Navbar() {
       <div className="lg:hidden w-full">
         <MobileNavbar />
       </div>
+     
     </div>
   );
 }
