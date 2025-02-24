@@ -1,19 +1,23 @@
 "use server";
 import { prisma } from "@/lib/prisma";
 
-export const getNumberOfSpaces = async (ownerId: string): Promise<string> => {
+
+export const getNumberOfSpaces = async (ownerId: string) => {
+
     if (!ownerId) {
-       await new Promise(resolve => setTimeout(resolve, 1000)); // 1-second delay
        return "No Spaces";
     }
 
-    await new Promise(resolve => setTimeout(resolve, 3000)); // Simulated delay for DB query
-
-    const campaigns = await prisma.space.findMany({
-        where: {
-            ownerId: ownerId
+    const campaigns = await prisma.space.findMany(
+        {
+            where: {
+                ownerId: ownerId
+            }
         }
-    });
+    );
+    if(campaigns==null)
+        return "No Spaces";
 
-    return campaigns.length ? `${campaigns.length} Space` : "No Spaces";
-};
+
+    return campaigns.length+"";
+}  

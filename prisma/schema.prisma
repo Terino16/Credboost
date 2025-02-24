@@ -69,7 +69,7 @@ model Space {
   logo        String?
   description  String
   customMessage String
-  Questions    String[]
+  questions    String[]
   testimonials  Testimonial[]
   createdAt    DateTime       @default(now())
 }

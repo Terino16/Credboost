@@ -2,19 +2,19 @@
 import { prisma } from "@/lib/prisma";
 
 
-export const getNumberOfSpaces = async (ownerId: string) => {
+export const getSpaces = async (ownerId: string) => {
 
     if (!ownerId) {
        return null;
     }
-    const campaigns = await prisma.space.findMany(
+    const spaces = await prisma.space.findMany(
         {
             where: {
                 ownerId: ownerId
             }
         }
     );
-    if(campaigns==null)
+    if(spaces==null)
         return 0;
-    return campaigns.length;
+    return spaces;
 }  

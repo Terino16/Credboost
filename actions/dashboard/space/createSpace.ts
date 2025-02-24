@@ -34,7 +34,7 @@ export default async function createSpace(formState: {
         ownerId,
         logo,
         customMessage,
-        Questions:questions
+        questions:questions
       },
     });
 

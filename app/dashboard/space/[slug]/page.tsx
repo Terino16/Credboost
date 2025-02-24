@@ -11,11 +11,9 @@ export default async function Page({
   const form={};
   // const product = await getProduct(campaign.product_id);
 
-
-
   return (
     <Suspense>
-     
+     {slug}
     </Suspense>
   );
 }
