@@ -95,12 +95,12 @@ export default function EditSpace({ spaceData }: Props) {
   };
 
   const onSubmit = async (data: any) => {
-    // const response = await updateSpace(spaceData.id, data); // Assume updateSpace action exists
-    // toast({
-    //   title: response.title,
-    //   description: response.description,
-    // });
-    // console.log("📨 Form submitted with data:", data);
+    const response = await updateSpace(spaceData.id, data); // Assume updateSpace action exists
+    toast({
+      title: response.title,
+      description: response.description,
+    });
+    console.log("📨 Form submitted with data:", data);
   };
 
   return (
@@ -108,7 +108,7 @@ export default function EditSpace({ spaceData }: Props) {
         <DialogTitle hidden>
             Edit Space
         </DialogTitle>
-        <DialogTrigger className="px-2 py-1.5 text-sm w-full text-left hover:bg-zinc-800 transition-all duration-300 rounded-md"> 
+        <DialogTrigger className="px-4 py-2 text-sm w-full text-left hover:bg-zinc-800 transition-all duration-300 "> 
             Edit
         </DialogTrigger>
         <DialogContent>
@@ -123,7 +123,7 @@ export default function EditSpace({ spaceData }: Props) {
           <FormField
             name="logo"
             control={form.control}
-            render={() => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Update Logo (Optional)</FormLabel>
                 <FormControl>

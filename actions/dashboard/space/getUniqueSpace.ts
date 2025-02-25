@@ -1,19 +1,20 @@
 "use server";
 import { prisma } from "@/lib/prisma";
-import exp from "constants";
 
-interface Campaign {
+
+interface Space {
   name: string;
   id: string;
-  userId: string;
+  ownerId: string;
   description: string;
+  logo: string | null;
+  customMessage: string;
+  questions: string[];
+  createdAt: Date;
 }
 
-interface CampaignError {
-  error: string;
-}
 
-async function getUniqueSpace(id: string): Promise<Campaign | CampaignError> {
+async function getUniqueSpace(id: string): Promise<Space> {
   try {
     const res = await prisma.space.findUnique({
       where: {
@@ -22,12 +23,12 @@ async function getUniqueSpace(id: string): Promise<Campaign | CampaignError> {
     });
 
     if (!res) {
-      throw new Error("Campaign not found");
+      throw new Error("Space not found");
     }
 
     return res;
   } catch (error) {
-    return { error:"Unable to Fetch Campaign" };
+    throw new Error("Unable to Fetch Space");
   }
 }
 

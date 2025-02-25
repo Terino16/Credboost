@@ -50,6 +50,10 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
     --featurecolor: 199, 43%, 56%;
+    --warning: 39, 89%, 49%; /* Yellow */
+    --success: 146, 58%, 50%; /* Green */
+    --destructive: 0, 79%, 55%; /* Red */
+    
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -76,6 +80,7 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    
     --featurecolor: 239, 84%, 67%;
   }
 }

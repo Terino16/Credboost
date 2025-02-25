@@ -1,19 +1,21 @@
 import { Suspense } from "react";
-import getCampaign from "@/actions/dashboard/space/getUniqueSpace";
+import getSpace from "@/actions/dashboard/space/getUniqueSpace";
+import { Skeleton } from "@/components/ui/skeleton";
+import SpacePage from "@/components/dashboard/space/SpacePage";
 
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string }
 }) {
-  const slug = (await params).slug;
-  const campaign = await getCampaign(slug);
-  const form={};
-  // const product = await getProduct(campaign.product_id);
-
+  const space = await getSpace(params.slug);
   return (
-    <Suspense>
-     {slug}
+    <Suspense fallback={<Loading />}>
+      <SpacePage space={space} />
     </Suspense>
   );
 }
+
+export const Loading = () => {
+  return <Skeleton className="w-full h-full" />;
+};

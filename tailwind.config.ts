@@ -10,6 +10,8 @@ export default {
   theme: {
   	extend: {
   		colors: {
+			warning: "hsl(39, 89%, 49%)", // Custom yellow
+			success: "hsl(146, 58%, 50%)", // Custom green
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
