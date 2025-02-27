@@ -2,7 +2,6 @@ import Image from "next/image"
 import { ModeToggle } from "@/components/ui/theme-toggle"
 import MobileNavbar from "./MobileNavbar"
 import UserButton from "@/components/general/UserButton"
-import { Button } from "../ui/button"
 import Link from "next/link"
 import { Routes } from "@/constants/Route"
 import SubscriptionButton from "./SubscriptionButton"
@@ -14,7 +13,7 @@ export default function Navbar() {
 
     const subscription=getSubscription();
     return (
-        <div className="flex justify-between items-center p-6">
+        <div className="flex max-w-6xl mx-auto justify-between items-center   py-12">
             {/* Desktop Navbar */}
             <div className="hidden lg:flex justify-between items-center w-full">
                 <div className="flex items-center gap-2">
@@ -28,8 +27,9 @@ export default function Navbar() {
                     <SubscriptionButton subscription={subscription}/>
                     </Suspense>
                  
-                    <UserButton />
+                   
                     <ModeToggle />
+                    <UserButton />
                 </div>
             </div>
             {/* Mobile Navbar */}

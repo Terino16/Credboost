@@ -94,10 +94,17 @@ function HeroTitle(): React.JSX.Element {
   export function HeroImage()
   {
     return(
-      <div className="relative bg-opacity-20 border border-zinc-400 p-4 border-white border-[1px] rounded-xl">
+      <div className="relative bg-opacity-20 border border-zinc-200 dark:border-zinc-900 p-4 border-white border-[1px] rounded-xl">
       <Image
-        src="/Hero.png"
-        className="rounded-lg w-[350px] md:w-[600px] lg:w-[900px]"
+        src="/HeroWhite.png"
+        className="rounded-lg w-[350px] md:w-[600px] lg:w-[900px] hidden dark:block"
+        width={900}
+        height={900}
+        alt="Error"
+      />
+        <Image
+        src="/HeroDark.png"
+        className="rounded-lg w-[350px] md:w-[600px] lg:w-[900px] block dark:hidden"
         width={900}
         height={900}
         alt="Error"

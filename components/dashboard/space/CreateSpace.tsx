@@ -22,7 +22,7 @@ export default function CreateSpace() {
                 <PlusCircleIcon/>
             </Button>
           </DialogTrigger>
-        <DialogContent className="max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-h-[80vh] max-w-[900px] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Create New Space</DialogTitle>
             <DialogDescription>

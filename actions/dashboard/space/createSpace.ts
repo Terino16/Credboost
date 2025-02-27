@@ -8,10 +8,10 @@ export default async function createSpace(formState: {
   name: string;
   description: string;
   logo: string;
-  customMessage: string;
+  welcomeMessage: string;
   questions: string[];
 }) {
-  const { name, description, logo, customMessage , questions } = formState;
+  const { name, description, logo, welcomeMessage , questions } = formState;
 
   console.log(questions);
 
@@ -33,7 +33,7 @@ export default async function createSpace(formState: {
         description,
         ownerId,
         logo,
-        customMessage,
+        customMessage:welcomeMessage,
         questions:questions
       },
     });

@@ -51,7 +51,7 @@ export default async function AnalyticsPage({ params }: { params: { slug: string
   console.log("Processed Chart Data:", groupedData);
 
   return (
-    <Card className="mt-4 w-full">
+    <Card className="mt-4 w-[500px]">
       <CardHeader>
         <CardTitle>Testimonials Overview</CardTitle>
         <CardDescription>Showing testimonial statistics over every 3-day interval</CardDescription>

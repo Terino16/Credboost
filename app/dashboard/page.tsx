@@ -43,23 +43,24 @@ export default async function Dashboard() {
     <>
       <div className="flex space-y-4 justify-between items-center w-full mb-4">
         <div className="flex flex-col items-center md:items-start space-y-2 md:w-1/2">
-          <Badge className="motion-preset-confetti w-fit ">Feature</Badge>
-          <h1 className="text-3xl font-semibold">Wall of Goody</h1>
-          <p className="text-center md:text-left">A fully customizable portfolio page to showcase your services, testimonials, and contact information—all in one place.</p>
-          <p className="text-left">✅ Personalized Branding – Add your logo, colors, and brand identity.</p>
-          <p className="text-left">✅ Client Testimonials – Highlight feedback from satisfied clients.</p>
-          <p className="text-left">✅Work Showcase – Display your best projects and case studies. </p>
+          <Badge className="motion-preset-confetti w-fit  ">Feature</Badge>
+          <h1 className="text-3xl tracking-tight">Wall of Goody</h1>
+          <p className="text-center md:text-left text-md">A fully customizable portfolio page to showcase your services, testimonials, and contact information—all in one place.</p>
+          <p className="text-left text-md">✅ Personalized Branding – Add your logo, colors, and brand identity.</p>
+          <p className="text-left text-md">✅ Client Testimonials – Highlight feedback from satisfied clients.</p>
+          <p className="text-left text-md">✅ Work Showcase – Display your best projects and case studies. </p>
         </div>
 
         <div className="hidden md:block ">
-          <Image src="/Hero.png" width={400} height={400} alt="HGello" className="rounded-lg p-2 border-[1px] border-white bg-zinc-300" />
+          <Image src="/HeroWhite.png" width={400} height={400} alt="HGello" className=" hidden dark:block rounded-lg  " />
+          <Image src="/HeroDark.png" width={400} height={400} alt="HGello" className="  dark:hidden rounded-lg  " />
         </div>
       </div>
 
       <Separator />
 
       <div className="w-full my-4">
-        <h1 className="text-3xl font-semibold my-4">Overview</h1>
+        <h1 className="text-3xl tracking-tight my-4">Overview</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Suspense fallback={<Skeleton className="h-8 w-[250px] bg-blue-100/10" />}>
             <NumberOfSpacesCard space={space} />
@@ -75,7 +76,7 @@ export default async function Dashboard() {
 
       <div className="my-4">
         <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-semibold">Spaces</h1>
+        <h1 className="text-3xl tracking-tight">Spaces</h1>
         <CreateSpace/>
         </div>
        
