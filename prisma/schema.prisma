@@ -71,6 +71,10 @@ model Space {
   customMessage String
   questions    String[]
   testimonials  Testimonial[]
+  discountCode String?
+  enableDiscount Boolean @default(false)
+  enableStarRating Boolean @default(false)
+  collectUserData Boolean @default(false)
   createdAt    DateTime       @default(now())
 }
 

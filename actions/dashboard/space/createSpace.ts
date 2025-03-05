@@ -10,8 +10,12 @@ export default async function createSpace(formState: {
   logo: string;
   welcomeMessage: string;
   questions: string[];
+  enableDiscount: boolean;
+  discountCode: string;
+  enableStarRating: boolean;
+  collectUserData: boolean;
 }) {
-  const { name, description, logo, welcomeMessage , questions } = formState;
+  const { name, description, logo, welcomeMessage , questions, enableDiscount, discountCode, enableStarRating, collectUserData } = formState;
 
   console.log(questions);
 
@@ -34,7 +38,11 @@ export default async function createSpace(formState: {
         ownerId,
         logo,
         customMessage:welcomeMessage,
-        questions:questions
+        questions:questions,
+        enableDiscount:enableDiscount,
+        discountCode:discountCode,
+        enableStarRating:enableStarRating,
+        collectUserData:collectUserData,
       },
     });
 

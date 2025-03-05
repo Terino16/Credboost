@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { StarIcon } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 const formSchema = z.object({
   name: z.string().min(1, "Space name is required"),
   logo: z.string().optional(),
@@ -25,7 +26,8 @@ const formSchema = z.object({
   questions: z.array(z.string()).min(1,"Minimum of 1 Question is Needed").max(5, "Maximum 5 questions allowed"),
   enableStarRating: z.boolean().default(false),
   collectUserData: z.boolean().default(false),
-  
+  enableDiscount: z.boolean().default(false),
+  discountCode: z.string().optional(),
 });
 
 export default function SpaceForm() {
@@ -39,6 +41,8 @@ export default function SpaceForm() {
       questions: ["", ""], 
       enableStarRating: false,
       collectUserData: false,
+      enableDiscount: false,
+      discountCode: "",
     },
   });
 
@@ -224,6 +228,42 @@ export default function SpaceForm() {
             )}
           />
 
+ {/* Enable Discount */}
+ <FormField
+            control={form.control}
+            name="enableDiscount"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center gap-2">
+                  <FormLabel>Offer Discount for Testimonials</FormLabel>
+                  <FormControl>
+                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                  </FormControl>
+                </div>
+                <FormDescription>Offer a discount coupon when users fill out your testimonial form</FormDescription>
+              </FormItem>
+            )}
+          />
+
+          {/* Discount Code - Only shown if enableDiscount is true */}
+          {form.watch("enableDiscount") && (
+            <FormField
+              control={form.control}
+              name="discountCode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Discount Code</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter discount code" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
+
+        
+
         <Button type="submit" className="w-full" disabled={uploading}>
           {uploading ? "Uploading..." : "Submit"}
         </Button>
@@ -274,19 +314,35 @@ export default function SpaceForm() {
       ))}
     </div>
 
+    {form.watch("enableDiscount") && (
+            <div className="mt-4 w-full p-3 bg-green-50 rounded-md border border-green-200">
+              <div className="flex flex-col items-center">
+                <Label className="text-sm font-medium text-green-700">Thank you for your feedback!</Label>
+                <div className="mt-2 p-2 bg-white border border-dashed border-green-300 rounded w-full text-center">
+                  <p className="text-sm text-gray-600">
+                    Use code:{" "}
+                    <span className="font-bold text-green-600">{form.watch("discountCode") || "DISCOUNT10"}</span>
+                  </p>
+                  <p className="text-xs text-gray-500">Apply this discount on your next purchase</p>
+                </div>
+              </div>
+            </div>
+          )}
+
   
 
     {/* Collect User Data Preview */}
     {form.watch("collectUserData") && (
-      <div className="flex flex-col items-center mt-4">
+      <div className="flex flex-col items-center justify-center mt-4">
         <Label className="text-sm font-medium">User Information Required Before Submission</Label>
-        <div className="flex items-center space-x-2 mt-2">
+        <div className="flex items-center justify-between w-full gap-4 mt-2">
           <Avatar className="w-10 h-10">
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
           <Input placeholder="User Name" disabled />
         </div>
-        <Button className="mt-2" variant="outline" disabled>
+        <Separator className="w-full my-4"/>
+        <Button className="mt-2 w-full " variant="outline" disabled>
           Sign in with Google
         </Button>
       </div>

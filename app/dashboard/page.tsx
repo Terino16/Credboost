@@ -14,10 +14,8 @@ import { getNumberofTestimonials } from "@/actions/dashboard/overview/getNumbero
 import getSubscription from "@/actions/Navbar/getSubscription";
 import { Skeleton } from "@/components/ui/skeleton";
 
-import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
 import { getSpaces } from "@/actions/dashboard/space/getSpaces";
-
+import { Feature } from "@/components/dashboard/space/Feature";
 
 export default async function Dashboard() {
   const session = await auth();
@@ -41,23 +39,11 @@ export default async function Dashboard() {
   return (
     
     <>
-      <div className="flex space-y-4 justify-between items-center w-full mb-4">
-        <div className="flex flex-col items-center md:items-start space-y-2 md:w-1/2">
-          <Badge className="motion-preset-confetti w-fit  ">Feature</Badge>
-          <h1 className="text-3xl tracking-tight">Wall of Goody</h1>
-          <p className="text-center md:text-left text-md">A fully customizable portfolio page to showcase your services, testimonials, and contact information—all in one place.</p>
-          <p className="text-left text-md">✅ Personalized Branding – Add your logo, colors, and brand identity.</p>
-          <p className="text-left text-md">✅ Client Testimonials – Highlight feedback from satisfied clients.</p>
-          <p className="text-left text-md">✅ Work Showcase – Display your best projects and case studies. </p>
-        </div>
-
-        <div className="hidden md:block ">
-          <Image src="/HeroWhite.png" width={400} height={400} alt="HGello" className=" hidden dark:block rounded-lg  " />
-          <Image src="/HeroDark.png" width={400} height={400} alt="HGello" className="  dark:hidden rounded-lg  " />
-        </div>
-      </div>
+ <Feature />
 
       <Separator />
+
+    
 
       <div className="w-full my-4">
         <h1 className="text-3xl tracking-tight my-4">Overview</h1>
